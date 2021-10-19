@@ -19,6 +19,11 @@
         <br><br>
         <input type='submit' value='Esito scrutinio'/>
         </form>
-
+        <?php 
+                session_start();
+                if (!isset($_SESSION["risultati"])) {
+                        $_SESSION["risultati"] = "";
+                }
+        ?>
 </body>
 </html>

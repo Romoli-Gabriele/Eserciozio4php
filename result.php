@@ -8,8 +8,7 @@
     <?php
         
         session_start();
-        $risultati = 0;
-        //$_SESSION["risultati"] = $risultati;
+        
         $debiti = 0;
         $materiedebiti = "";
         if(!isset($_POST["nominativo"])){
@@ -29,28 +28,29 @@
         }
         if(isset($_POST["italiano"])){
             $debiti++;
-            $materiedebiti.(" Italiano,");
+            $materiedebiti = $materiedebiti.(" Italiano,");
         }
         if(isset($_POST["matematica"])){
             $debiti ++;
-           $materiedebiti.(" Matematica,");
+            $materiedebiti = $materiedebiti.(" Matematica,");
         }
         if(isset($_POST["telecomunicazioni"])){
             $debiti ++;
-            $materiedebiti.(" Telecomunicazioni,");
+            $materiedebiti = $materiedebiti.(" Telecomunicazioni,");
         }
         if(isset($_POST["informatica"])){
             $debiti ++;
             $materiedebiti = $materiedebiti.(" Informatica,");
         }
         if($debiti == 0){
-            $risultati.("Risultato di ").$_POST["nominativo"].(": <b>").("ammess").$genere.("</b><br>");
+            $_SESSION["risultati"] = $_SESSION["risultati"]."Risultato di ".$_POST["nominativo"].": <b>"."ammess".$genere."</b><br>";
         }else if($debiti < 3 && $debiti > 0){
-            $risultati.("Risultato di ").$_POST["nominativo"].(": <b>").("ammess").$genere.("</b> con debiti in ").$materiedebiti.("<br>");
+            $_SESSION["risultati"] = $_SESSION["risultati"].("Risultato di ").$_POST["nominativo"].(": <b>").("ammess").$genere.("</b> con debiti in ").$materiedebiti.("<br>");
         }else{
-            $risultati.("Risultato di ").$_POST["nominativo"].(": <b>").("non ammess").$genere.("</b><br>");
+            $_SESSION["risultati"] = $_SESSION["risultati"].("Risultato di ").$_POST["nominativo"].(": <b>").("non ammess").$genere.("</b><br>");
         }
-        echo $risultati;
+        
+        echo $_SESSION["risultati"];
         
         echo' <br> <a href="index.php">Inserisci un nuovo utente</a><br>
         <a href="termina.php">Termina scrutinio</a>
